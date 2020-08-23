@@ -4,15 +4,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
+@Entity
 public class Item {
 
+    @Id
     Long itemID;
+    String itemName;
+    String imageUrl;
     Double price;
-    Integer quantity;
+    Integer quantity = 1;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    Cart cart;
 }
